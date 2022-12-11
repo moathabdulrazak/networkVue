@@ -12,16 +12,17 @@
       they don’t want you to enjoy life. I promise you, they don’t want you to jetski, they don’t want you to smile.
       Surround yourself with angels. The key is to enjoy life, because they don’t want you to enjoy life. I promise you,
       they don’t want you to jetski, they don’t want you to smile.
-
+      <img class="col-2 d-flex" :src="ads[0]?.tall" alt="">
       Hammock talk come soon. The key to success is to keep your head above the water, never give up. You do know, you
       do know that they don’t want you to have lunch. I’m keeping it real with you, so what you going do is have lunch.
       We the best. Special cloth alert. We don’t see them, we will never see them. The key to success is to keep your
       head above the water, never give up. They don’t want us to win. To be successful you’ve got to work hard, to make
-      history, simple, you’ve got to make it. Celebrate success right, the only way, apple.</p>
+      history, simple, you’ve got to make it. Celebrate success right, the only way, apple.
+      <img class="col-2  d-flex" :src="ads[1]?.tall" alt="">
+    </p>
+
   </div>
 
-  <img class="col-2 d-flex" :src="ads[0]?.tall" alt="">
-  <img class="col-2  d-flex" :src="ads[1]?.tall" alt="">
 </template>
 
 <script>

@@ -41,16 +41,18 @@
           </div>
         </div>
       </div>
+
+      <img class="col-2 d-flex" :src="ads[0]?.tall" alt="">
+
       <div class="row container-fluid">
         <div v-for="p in posts" class="col-md- col-12 p-4">
           <PostCard :posts="p" />
         </div>
       </div>
     </div>
+    <img class="col-2  d-flex" :src="ads[1]?.tall" alt="">
   </div>
 
-  <img class="col-2 d-flex" :src="ads[0]?.tall" alt="">
-  <img class="col-2  d-flex" :src="ads[1]?.tall" alt="">
 </template>
 
 

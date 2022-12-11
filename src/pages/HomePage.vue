@@ -18,30 +18,34 @@
   <!-- SECTION POST CARD -->
   <div class="container-fluid">
     <div class="row container-fluid">
+
       <div v-for="p in posts" class="col-10 p-3">
         <PostCard :posts="p" />
       </div>
+      <img class="col-2 d-flex" :src="ads[0]?.tall" alt="">
+      <img class="col-2 d-flex" :src="ads[1]?.tall" alt="">
     </div>
   </div>
   <div class="row container-fluid">
-    <img class="col-2 d-flex" :src="ads[0]?.tall" alt="">
+    <div class="row container-fluid">
+      <div class="col-md-6">
+        <button :disabled="!previousPage" @click="changePage(previousPage)" class="btn btn-outline-info text-dark w-50">
+          Previous
+        </button>
+      </div>
+
+      <div class="col-md-6 justify-content-end d-flex">
+        <button @click="changePage(nextPage)" class="btn btn-outline-info text-dark w-50">
+          Next
+        </button>
+      </div>
+    </div>
   </div>
-  <img class="col-2  d-flex" :src="ads[1]?.tall" alt="">
+  <div>
+
+  </div>
   <!-- SECTION CHANGE PAGE -->
 
-  <div class="row container-fluid">
-    <div class="col-md-6">
-      <button :disabled="!previousPage" @click="changePage(previousPage)" class="btn btn-outline-info text-dark w-50">
-        Previous
-      </button>
-    </div>
-
-    <div class="col-md-6 justify-content-end d-flex">
-      <button @click="changePage(nextPage)" class="btn btn-outline-info text-dark w-50">
-        Next
-      </button>
-    </div>
-  </div>
 
 
 </template>
