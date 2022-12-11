@@ -22,7 +22,6 @@
             <h2>
               {{ profile.linkedin }}
             </h2>
-
             <h2>
               class:{{ profile.class }}
             </h2>
