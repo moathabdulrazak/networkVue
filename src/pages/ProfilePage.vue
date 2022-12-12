@@ -1,11 +1,27 @@
 <template>
 
-  <div class="component container-fluid">
+  <!-- <div class="component container-fluid"> -->
 
+  <!-- 
+    <PostForm /> -->
+  <div class="container-fluid">
+    <div class="row container-fluid">
+      <div class="row container-fluid">
+        <div class="col-md-6">
+          <button :disabled="!previousPage" @click="changePage(previousPage)"
+            class="btn btn-outline-info text-dark w-50">
+            Previous
+          </button>
+        </div>
 
-    <PostForm />
-    <div class="container-fluid">
-
+        <div class="col-md-6 justify-content-end d-flex">
+          <button :disabled="!nextPage" @click="changePage(nextPage)" class="btn btn-outline-info text-dark w-50">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+    <div>
       <div v-if="profile" class="row container-fluid cover-img" :style="`background-image: url(${profile.coverImg})`">
         <div class="col-12 d-flex align-items-center justify-content-around">
           <img :src="profile.picture" alt="" class="img-fluid profile-picture rounded-circle elevation-5">
@@ -16,12 +32,10 @@
             <h2>
               {{ profile.bio }}
             </h2>
-            <h2>
-              graduated: {{ profile.graduated }}
+            <h2 v-if="profile.graduated">
+              graduated: 🎓
             </h2>
-            <h2>
-              {{ profile.linkedin }}
-            </h2>
+            <h2 v-else="!profile.graduated">🚫🎓</h2>
             <h2>
               class:{{ profile.class }}
             </h2>
@@ -97,20 +111,34 @@ export default {
       } catch (error) {
       }
     }
+
     onMounted(() => {
       getProfileById();
       getPostsByCreatorId();
       getAds()
+      // changePageProfile()
     })
     return {
       profile: computed(() => AppState.activeProfile),
       posts: computed(() => AppState.posts),
       account: computed(() => AppState.ac),
-      ads: computed(() => AppState.ads)
+      ads: computed(() => AppState.ads),
+      nextPage: computed(() => AppState.nextPage),
+      previousPage: computed(() => AppState.previousPage),
 
+      async changePage(url) {
+        try {
+          await postService.changePage(url);
+        } catch (error) {
+          console.log(error);
+        }
+      },
     }
-  }
-};
+  },
+
+}
+//   }
+// };
 </script>
 
 

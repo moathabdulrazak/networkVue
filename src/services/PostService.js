@@ -39,7 +39,14 @@ class PostService {
     logger.log(res.data.older)
     AppState.nextPage = res.data.older
     AppState.previousPage = res.data.newer
-    AppState.posts = res.data.posts
+    AppState.posts = res.data.posts.map(p => new Post(p))
+  }
+  async changePageProfile(creatorId) {
+    const res = await api.get(`/api/profiles/${creatorId}/posts`)
+    logger.log(res.data.older)
+    AppState.nextPage = res.data.older
+    AppState.previousPage = res.data.newer
+    AppState.posts = res.data.posts.map(p => new Post(p))
   }
 
   async createLikes(id) {
@@ -53,7 +60,9 @@ class PostService {
   async getPostsByCreatorId(creatorId) {
     const res = await api.get(`api/profiles/${creatorId}/posts`)
     // logger.log(res.data)
-    AppState.posts = res.data.posts
+    AppState.posts = res.data.posts.map(p => new Post(p))
+    AppState.nextPage = res.data.older
+    AppState.previousPage = res.data.newer
   }
 
 }

@@ -5,8 +5,10 @@
     <img class="rounded" :src="account.picture" alt="" />
     <p>{{ account.email }}</p>
     <p>{{ account.class }}</p>
+    <!-- <p>{{ account.graduated }}</p> -->
   </div>
-
+  <img class="col-2 d-flex p-1" :src="ads[0]?.tall" alt="">
+  <img class="col-2  d-flex p-1" :src="ads[1]?.tall" alt="">
 
   <div class="container-fluid">
     <div class="row justify-content-center container-fluid">
@@ -28,6 +30,26 @@
           <div class="mb-3">
             <label for="coverImg" class="form-label">coverImg</label>
             <input v-model="editable.coverImg" type="text" required class="form-control" id="coverImg">
+          </div>
+          <!-- <div class="mb-3">
+            <label for="graduated" class="form-label">graduated</label>
+            <input checkbox v-model="editable.graduated" type="check" required class="form-control" id="coverImg">
+          </div> -->
+          <!-- <div class="form-check">
+            <input v-modal="editable.graduated" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              graduated
+            </label>
+          </div> -->
+          <div class=" d-flex align-items-center">
+            <label class=" mt-2 " for="graduated">
+              <div text="Graduated">
+                <i class="mdi mdi-account-school-outline fs-2"></i>
+              </div>
+            </label>
+            <div>
+              <input class="form-check-input checkbox" type="checkbox" name="graduated" v-model="editable.graduated" />
+            </div>
           </div>
           <div class="mb-3">
             <label for="coverImg" class="form-label">resume</label>
@@ -53,10 +75,12 @@
 
 <script>
 import { computed, ref, watchEffect } from 'vue'
+import { onMounted } from "vue";
 import { AppState } from '../AppState'
 import { accountService } from "../services/AccountService.js"
 import { logger } from "../utils/Logger.js"
 import Pop from "../utils/Pop.js"
+import { adsService } from "../services/AdsService.js";
 export default {
   setup() {
     const editable = ref({})
@@ -65,8 +89,18 @@ export default {
         editable.value = { ...AppState.account }
       }
     })
+    async function getAds() {
+      try {
+        await adsService.getAds()
+      } catch (error) {
+      }
+    }
+    onMounted(() => {
+      getAds()
+    })
     return {
       editable,
+      ads: computed(() => AppState.ads),
       account: computed(() => AppState.account),
       async editAccount() {
         try {

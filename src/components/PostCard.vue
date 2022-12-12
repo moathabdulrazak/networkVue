@@ -7,7 +7,8 @@
   <!-- SECTION post card -->
   <div class="row container-fluid justify-content-center">
     <div class=" movin-body col-6 elevation-1 justify-content-center">
-      <img v-if="!posts.img" class="img-size-body justify-content-center movin-pic" :src="posts.imgUrl" alt="">
+      <img v-if="posts.imgUrl" class="img-size-body justify-content-center movin-pic" :src="posts.imgUrl" alt="">
+      <div v-else="">👻 no image dude</div>
       <h4 class="text-center">{{ posts.body }}</h4>
       <router-link v-if="route.name == 'Home'" :to="{ name: 'Profile', params: { profileId: posts?.creatorId } }">
         <div class="">
